@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/repos/default/!svn/ver/89/thermo/trunk
+END
+rootfinder.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/default/!svn/ver/87/thermo/trunk/rootfinder.py
+END
+qt_vs_theta_l.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/repos/default/!svn/ver/79/thermo/trunk/qt_vs_theta_l.py
+END
+skewT.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/repos/default/!svn/ver/77/thermo/trunk/skewT.py
+END
+sounding.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/repos/default/!svn/ver/77/thermo/trunk/sounding.txt
+END
+thermo.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/repos/default/!svn/ver/89/thermo/trunk/thermo.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/repos/default/!svn/ver/77/thermo/trunk/__init__.py
+END
+SAM.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/repos/default/!svn/ver/89/thermo/trunk/SAM.py
+END
+qt_vs_theta_alpha.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/repos/default/!svn/ver/79/thermo/trunk/qt_vs_theta_alpha.py
+END

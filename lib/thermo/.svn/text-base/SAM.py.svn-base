@@ -1,0 +1,150 @@
+#!/usr/bin/env python
+
+import numpy
+import rootfinder
+import thermo
+
+# Definition of thermodynamic constant:
+cp = 1004.    # Heat capacity at constant pressure for dry air [J kg^-1 K^-1]
+Cl = 4190.     # Heat capacity of liquid water [J kg^-1 K^-1]
+Rv = 461.      # Gas constant of water vapor [J kg^-1 K^-1]
+Rd = 287.      # Gas constant of dry air [J kg^-1 K^-1]
+Lv = 2.50104e6 # Latent heat of vaporization [J kg^-1]
+Lf = 0.3336e6  # Latent heat of fusion [J kg^-1]
+Ls = 2.8440e6  # Latent heat of sublimation [J kg^-1]
+g = 9.81       # Accelleration of gravity [m s^-2]
+epsilon = Rd/Rv
+
+tbgmin = 253.16
+tbgmax = 273.16
+tprmin = 268.16
+tprmax = 283.16
+tgrmin = 223.16
+tgrmax = 283.16
+
+an = 1./(tbgmax - tbgmin)
+bn = tbgmin * an
+ap = 1./(tprmax - tprmin)
+bp = tprmin * ap
+
+fac_cond = Lv/cp
+fac_fus = Lf/cp
+fac_sub = Ls/cp
+
+fac1 = fac_cond + (1 + bp)*fac_fus
+fac2 = fac_fus*ap
+ag = 1./(tgrmax - tgrmin)
+
+
+def h(T, z, ql, qi):
+    return cp*T + g*z - Lv*ql - Ls*qi
+
+def invert_h(h, z, p, q, qp):
+    Tabs = (h - g*z)/cp
+    qp = qp + 0.*Tabs
+    Tabs1 = (Tabs + fac1*qp)/(1. + fac2*qp)
+
+    T_gt = Tabs1 >= tbgmax
+    T_lt = Tabs1 <= tbgmin
+
+    Tabs1[T_gt] = Tabs[T_gt] + fac_cond*qp[T_gt]
+    Tabs1[T_lt] = Tabs[T_lt] + fac_sub*qp[T_lt]
+
+    om = an*Tabs1 - bn
+    om[T_gt] = 1.
+    om[T_lt] = 0.
+
+    qsatt = om*qsatw(Tabs1, p) + (1.-om)*qsati(Tabs1, p)
+
+    niter = 0
+    dTabs = 100. + 0.*Tabs
+    qn = Tabs*0.
+    while (niter < 7):
+        T_gt = Tabs1 >= tbgmax
+        T_lt = Tabs1 <= tbgmin
+
+        om = an*Tabs1 - bn
+        om[T_gt] = 1.
+        om[T_lt] = 0.
+
+        dlstarn = an*fac_fus + Tabs1*0.
+        dlstarn[T_gt] = 0.
+        dlstarn[T_lt] = 0.
+
+        lstarn = om*fac_cond + (1.-om)*fac_sub
+        qsatt = om*qsatw(Tabs1, p) + (1.-om)*qsati(Tabs1, p)
+        dqsat = om*dtqsatw(Tabs1, p) + (1.-om)*dtqsati(Tabs1, p)
+
+        T_gt = Tabs1 >= tprmax
+        T_lt = Tabs1 <= tprmin
+
+        omp = ap*Tabs1 - bp
+        omp[T_gt] = 1.
+        omp[T_lt] = 0.
+       
+        dlstarp = ap*fac_fus + 0.*Tabs1
+        dlstarp[T_gt] = 0.
+        dlstarp[T_lt] = 0.
+
+        lstarp = om*fac_cond + (1. - om)*fac_sub
+
+        qn[q-qsatt > 0] = q-qsatt[q-qsatt > 0]
+
+        fff = Tabs + lstarn*qn + lstarp*qp - Tabs1
+        dfff = dlstarn*qn + dlstarp*qp - lstarn*dqsat - 1.
+        dTabs = -fff/dfff
+        niter = niter + 1
+        Tabs1[qn > 0] = Tabs1[qn > 0] + dTabs[qn > 0]
+
+    return Tabs1, qn
+
+def esatw(T):
+    # Saturation vapor [Pa]
+    a = (6.11239921, 0.443987641, 0.142986287e-1, 0.264847430e-3, 0.302950461e-5,
+         0.206739458e-7, 0.640689451e-10, -0.952447341e-13, -0.976195544e-15)
+    T = T-273.16
+    T[T<-80.] = -80.
+    return a[0] + T*(a[1] + T*(a[2] + T*(a[3] + T*(a[4] + T*(a[5] + T*(a[6] + T*(a[7] + T*a[8])))))))
+    
+def qsatw(T, p):
+    esat = esatw(T)
+    p_esat = p - esat
+    p_esat[esat > p_esat] = esat
+    return 0.622 * esat/p_esat
+
+def dtesatw(T):
+    a = (0.443956472, 0.285976452e-1, 0.794747212e-3, 0.121167162e-4, 0.103167413e-6,
+         0.385208005e-9, -0.604119582e-12, -0.792933209e-14, -0.599634321e-17)
+    T = T-273.16
+    T[T<-80.] = -80.
+    return a[0] + T*(a[1] + T*(a[2] + T*(a[3] + T*(a[4] + T*(a[5] + T*(a[6] + T*(a[7] + T*a[8])))))))
+
+def dtqsatw(T, p):
+    return 0.622*dtesatw(T)/p
+
+def esati(T):
+    a = (6.11147274, 0.503160820, 0.188439774e-1, 0.420895665e-3, 0.615021634e-5,
+         0.602588177e-7, 0.385852041e-9, 0.146898966e-11, 0.252751365e-14)
+    T = T-273.16
+    answer = a[0] + T*(a[1] + T*(a[2] + T*(a[3] + T*(a[4] + T*(a[5] + T*(a[6] + T*(a[7] + T*a[8])))))))
+    T[T<-100.] = -100.
+    answer[T < -88.16] = 0.00763685 + T[T < -88.16]*(0.000151069 + T[T < -88.16]*7.48215e-7)
+    return answer
+
+def qsati(T, p):
+    esat = esati(T)
+    p_esat = p - esat
+    p_esat[esat > p_esat] = esat
+    return 0.622 * esat/p_esat
+        
+def dtesati(T):
+    a = (0.503223089, 0.377174432e-1, 0.126710138e-2, 0.249065913e-4, 0.312668753e-6,
+         0.255653718e-8, 0.132073448e-10, 0.390204672e-13, 0.497275778e-16)
+    T = T-273.16
+    answer = a[0] + T*(a[1] + T*(a[2] + T*(a[3] + T*(a[4] + T*(a[5] + T*(a[6] + T*(a[7] + T*a[8])))))))
+    T[T<-100.] = -100.
+    answer[T < -88.16] = 0.0013186 + T[T < -88.16]*(2.60269e-5 + T[T < -88.16]*1.28676e-7)
+    return answer
+
+def dtqsati(T, p):
+    return 0.622*dtesati(T)/p
