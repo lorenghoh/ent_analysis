@@ -8,16 +8,17 @@ for option in ('ug', 'vg', 'dt', 'dz', 'dy', 'dx'):
 	model_config[option] = config.getfloat('modelconfig', option)
 for option in ('nt', 'nz', 'ny', 'nx'):
 	model_config[option] = config.getint('modelconfig', option)
+for option in ('input_directory', 'data_directory', 'SAM_directory'):
+	model_config[option] = config.get('modelconfig', option)
 
 nt, nz, ny, nx = model_config['nt'], model_config['nz'], model_config['ny'], model_config['nx']
 dt, dz, dy, dz = model_config['dt'], model_config['dz'], model_config['dy'], model_config['dz']
 
 ug, vg = model_config['ug'], model_config['vg']
 
-input_directory = config.get('modelconfig', 'input_directory')
-data_directory = config.get('modelconfig', 'data_directory')
-
-SAM_directory = config.get('modelconfig', 'SAM_directory')
+input_directory = model_config[ 'input_directory']
+data_directory = model_config[ 'data_directory']
+SAM_directory = model_config[ 'SAM_directory']
 
 def index_to_zyx(index):
     z = index / (ny*nx)
