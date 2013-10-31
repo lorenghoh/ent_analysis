@@ -20,9 +20,15 @@ if __name__ == '__main__':
 	
 	### Cloudtracker
 	from cloudtracker import main
+	# Change the working directory for cloudtracker
+	os.chdir('./cloudtracker')
 	
 	model_config = mc.model_config
+	
 	model_config['input_directory'] = model_config['data_directory'] + 'tracking/'
 	main.main(model_config)
+	
+	# Return to entrainment analysis directory
+	os.chdir('../')	
 	
 	### Additional Profiles
