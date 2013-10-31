@@ -8,7 +8,7 @@ import model_param as mc
 PROC = 16
 
 FILELIST = glob.glob(mc.input_directory + '*.bin3D')
-BIN3D2NC = mc.SAM_directory + 'UTIL/bin3D2nc'
+BIN3D2NC = mc.input_directory + 'UTIL/bin3D2nc'
 
 ############################
 ### No need to edit the following script

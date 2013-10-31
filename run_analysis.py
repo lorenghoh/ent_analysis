@@ -7,7 +7,6 @@ import model_param as mc
 if __name__ == '__main__':
 	### File conversion (.bin3d -> netCDF)
 	from conversion import *
-	# bin3d2nc
 	#convert.main()
 	
 	# generate_tracking
@@ -16,11 +15,14 @@ if __name__ == '__main__':
 	nt = len(filelist)
 
 	#for time_step, filename in enumerate(filelist):
-		#print "time_step: " + str(time_step)
-		#generate_tracking.main(time_step, filename)
-
+	#	print "time_step: " + str(time_step)
+	#	generate_tracking.main(time_step, filename)
+	
 	### Cloudtracker
 	from cloudtracker import main
-	#main.main(mc.model_config)
+	
+	model_config = mc.model_config
+	model_config['input_directory'] = model_config['data_directory'] + 'tracking/'
+	main.main(model_config)
 	
 	### Additional Profiles
