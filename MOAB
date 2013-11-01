@@ -6,4 +6,4 @@
 #PBS -N ent_analysis
 
 cd /sb/project/xgk-345-ab/loh/data/ent_analysis/
-python -O ./run_analysis.py
+python -O -B ./run_analysis.py
