@@ -9,9 +9,10 @@ PROC = 16
 import model_param as mc
 
 def run_conversion(filelist):
+	# bin3d2nc conversion
 	from conversion import *
-	
-	#convert.main()
+	pool = mp.Pool(PROC)
+	pool.map(conver.main, filelist)
 	
 	# generate_tracking
 	for time_step, filename in enumerate(filelist):
