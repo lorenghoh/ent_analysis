@@ -11,11 +11,12 @@ Current version of ent_analysis package will not fully run yet.
 
 ### In Progress ###
 - [] Automated data structure
-- [ ] Modify parallelization to be handled by the main script (*run_analysis.py*)
+- [x] Modify parallelization to be handled by the main script (*run_analysis.py*)
 - [x] Modularize the main script (for pre-processing)
 - [x] Add parallelization to *conversion* module
 - [ ] Add parallelization to *generate_tracking* module
 - [ ] Add parallelization to *time_profile* module(s)
+- [ ] Automatically generate profiles
 - [x] Better written *README.md*
 
 ### Next ###
