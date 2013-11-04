@@ -1,4 +1,8 @@
 *.pyo
+*.pyc
+*.nc
+*.txt
 
 output/
 pkl/
+cdf/

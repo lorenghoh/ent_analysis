@@ -43,6 +43,7 @@ def index_to_zyx(index):
 def create_savefile(t, data, vars, profile_name):
     ids = data['ids'][:]
     z = data['z'][:]
+    print 'cdf/%s_profile_%08d.nc' % (profile_name, t)
     savefile = Dataset('cdf/%s_profile_%08d.nc' % (profile_name, t), 'w', format='NETCDF3_64BIT')
     
     # Create savefile
@@ -121,7 +122,7 @@ def main(time, filename):
     stat_file.close()
     
     # For each cloud, iterate over all times
-    cloud_filename = '../cloudtracker/pkl/cloud_data_%08d.pkl' % time
+    cloud_filename = './cloudtracker/pkl/cloud_data_%08d.pkl' % time
    
     # Load the cloud data at that timestep
     clouds = cPickle.load(open(cloud_filename, 'rb'))

@@ -4,24 +4,28 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 16
+PROC = 1
 
 import model_param as mc
+import cloudtracker.main
 
-def run_conversion(filelist):
+from conversion import *
+from time_profiles import make_profiles
+
+def run_conversion(filelist):	
 	# bin3d2nc conversion
-	from conversion import *
 	pool = mp.Pool(PROC)
-	pool.map(conver.main, filelist)
+	pool.map(convert.main, filelist)
 	
 	# generate_tracking
-	for time_step, filename in enumerate(filelist):
-		print "time_step: " + str(time_step)
-		generate_tracking.main(time_step, filename)
+	# Wrap the module for multi-processing
+	pool = mp.Pool(PROC)
+	pool.map(conv_wrapper, enumerate(filelist))
+	
+def conv_wrapper((time_step, filename)):
+	generate_tracking.main(time_step, filename)
 		
 def run_cloudtracker():
-	import cloudtracker.main
-	
 	# Change the working directory for cloudtracker
 	os.chdir('./cloudtracker')
 	
@@ -34,17 +38,19 @@ def run_cloudtracker():
 	os.chdir('../')	
 
 def run_time_profiles(filelist):
-	from time_profiles import make_profiles
-	
-	for time, filename in enumerate(files):
-		make_profiles.main(time, filename)
+	pool = mp.Pool(PROC)
+	pool.map(time_profiles_wrapper, enumerate(filelist))
+		
+def time_profiles_wrapper((time_step, filename)):
+	print time_step, filename
+	make_profiles.main(time_step, filename)
 
 def main():
 	filelist = glob.glob('%s/variables/*.nc' % mc.data_directory)
 	filelist.sort()
 
 	### File conversion (.bin3d -> netCDF)
-	#run_file_conversion(filelist)
+	#run_conversion(filelist)
 	
 	### Cloudtracker
 	#run_cloudtracker()
