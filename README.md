@@ -15,7 +15,7 @@ Current version of ent_analysis package will not fully run yet.
 - [x] Modularize the main script (for pre-processing)
 - [x] Add parallelization to *conversion* module
 - [ ] Add parallelization to *generate_tracking* module
-- [ ] Add parallelization to *time_profile* module(s)
+- [x] Add parallelization to *time_profile* module(s)
 - [ ] Automatically generate profiles
 - [x] Better written *README.md*
 

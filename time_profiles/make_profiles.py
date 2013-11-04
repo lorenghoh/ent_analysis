@@ -63,7 +63,7 @@ def create_savefile(t, data, vars, profile_name):
 
 #--------------
 
-def make_profiles(profiles, cloud_data, vars, data, files, n):
+def make_profiles(profiles, cloud_data, vars, data, n):
     for item in ('condensed', 'condensed_shell', 
                  'condensed_edge', 'condensed_env',
                  'core', 'core_shell', 
@@ -122,7 +122,7 @@ def main(time, filename):
     stat_file.close()
     
     # For each cloud, iterate over all times
-    cloud_filename = './cloudtracker/pkl/cloud_data_%08d.pkl' % time
+    cloud_filename = '../cloudtracker/pkl/cloud_data_%08d.pkl' % time
    
     # Load the cloud data at that timestep
     clouds = cPickle.load(open(cloud_filename, 'rb'))
@@ -151,16 +151,15 @@ def main(time, filename):
         print "time: ", time, " id: ", id
         # Select the current cloud id
         cloud = clouds[id]
-
-        make_profiles(profiles, cloud, vars, data, files, n)
-            
+	
+        make_profiles(profiles, cloud, vars, data, n)
+        
     for savefile in savefiles.values():
         savefile.close()
 
     nc_file.close()
    
 if __name__ == "__main__":
-
     files = glob.glob('%s/variables/*.nc' % mc.data_directory)
     files.sort()
     

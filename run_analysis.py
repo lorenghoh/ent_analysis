@@ -4,7 +4,7 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 1
+PROC = 16
 
 import model_param as mc
 import cloudtracker.main
@@ -38,11 +38,16 @@ def run_cloudtracker():
 	os.chdir('../')	
 
 def run_time_profiles(filelist):
+	# Return to entrainment analysis directory
+	os.chdir('./time_profiles')	
+	
 	pool = mp.Pool(PROC)
 	pool.map(time_profiles_wrapper, enumerate(filelist))
+	
+	# Return to entrainment analysis directory
+	os.chdir('../')	
 		
 def time_profiles_wrapper((time_step, filename)):
-	print time_step, filename
 	make_profiles.main(time_step, filename)
 
 def main():
