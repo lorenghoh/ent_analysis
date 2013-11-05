@@ -4,7 +4,7 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 16
+PROC = 12
 
 import model_param as mc
 import cloudtracker.main
@@ -24,7 +24,7 @@ def run_conversion(filelist):
 	
 def conv_wrapper((time_step, filename)):
 	generate_tracking.main(time_step, filename)
-		
+	
 def run_cloudtracker():
 	# Change the working directory for cloudtracker
 	os.chdir('./cloudtracker')
