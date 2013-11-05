@@ -17,7 +17,7 @@ Current version of ent_analysis package will not fully run yet.
 - [x] Add parallelization to ```conversion``` module
 - [x] Add parallelization to ```generate_tracking``` module
 - [x] Add parallelization to ```time_profile``` module(s)
-- [ ] Automatically generate profiles
+- [x] Automatically generate profiles
 - [x] Better written ```README.md```
 - [ ] Modify ```id_profile``` module for parallelization
 - [ ] Add ```id_profile``` module for automation
@@ -26,7 +26,8 @@ Current version of ent_analysis package will not fully run yet.
 
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
 - [x] ```id_profile``` module, if needed (moved to 'in progress' list)
-- [] Automated data structure
+- [ ] Automated data structure
+- [ ] Handle difference cases in config.cfg
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
