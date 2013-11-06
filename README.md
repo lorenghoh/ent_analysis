@@ -7,27 +7,27 @@ The **entrainment analysis toolkit** is a package used to post-process output da
  The raw ```.bin3D``` data from SAM is converted, and sorted to be used by  [*cloudtracker*](https://github.com/freedryk/cloudtracker). Then for each cloud parcel, the package creates a ```netCDF``` file containing all the relevant output data from SAM. Now with the individual cloud data collected by ```cloudtracker```, it is possible to apply reanalysis scripts (or *analysis modules*) to produce a more detailed picture of each cloud parcel -- these *modules* will modify output ```netCDF``` files and add additional statistical variables needed for the entrainment analysis. 
 
 ## Current status ##
-### Overview ###
-
 Current version of ent_analysis package will not fully run yet. 
 
-### In Progress ###
+### Done ###
 - [x] Modify parallelization to be handled by the main script (```run_analysis.py```)
 - [x] Modularize the main script (for pre-processing)
 - [x] Add parallelization to ```conversion``` module
 - [x] Add parallelization to ```generate_tracking``` module
-- [x] Add parallelization to ```time_profile``` module(s)
-- [x] Automatically generate profiles
+- [x] Add parallelization to ```time_profiles``` module
+
+### In Progress ###
+- [ ] Automatically generate profiles
 - [x] Better written ```README.md```
-- [ ] Modify ```id_profile``` module for parallelization
-- [ ] Add ```id_profile``` module for automation
+- [ ] Parallelize ```profiler``` scripts
+- [ ] Modify ```id_profiles``` module for parallelization
+- [ ] Add ```id_profiles``` module for automation
 
 ### Next ###
 
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
-- [x] ```id_profile``` module, if needed (moved to 'in progress' list)
-- [ ] Automated data structure
-- [ ] Handle difference cases in config.cfg
+- [ ] Automate data structure
+- [ ] Calculate density perturbation in ```time_profiles```
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
