@@ -20,7 +20,7 @@ Current version of ent_analysis package will not fully run yet.
 - [ ] Automatically generate profiles
 - [x] Better written ```README.md```
 - [x] Parallelize ```profiler``` scripts
-- [ ] Modify ```id_profiles``` module for parallelization
+- [x] Modify ```id_profiles``` module for parallelization
 - [x] Add ```id_profiles``` module for automation
 
 ### Next ###

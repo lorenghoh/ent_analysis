@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 #Runtime (690, 130, 128, 128): 3 hours 40 minutes
 
-import sys
+import sys, glob
 from pylab import *
 import numpy
 import cPickle
-import glob
 from netCDF4 import Dataset
 import networkx
 
@@ -19,7 +18,6 @@ def main(item):
 
         ids = ncfile.variables['ids'][:]
         z = ncfile.variables['z'][:]
-        
         
         for n, id in enumerate(ids):
             id = int(id)
