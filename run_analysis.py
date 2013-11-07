@@ -11,6 +11,7 @@ import cloudtracker.main
 
 from conversion import *
 from time_profiles import make_profiles
+from id_profiles import core_profiles
 
 def run_conversion(filelist):	
 	# bin3d2nc conversion
@@ -37,7 +38,8 @@ def run_cloudtracker():
 	# Return to entrainment analysis directory
 	os.chdir('../')	
 
-def run_time_profiles(filelist):
+def run_profiler(filelist):
+	### time_profiles
 	# Return to entrainment analysis directory
 	os.chdir('./time_profiles')	
 	
@@ -61,7 +63,10 @@ def main():
 	#run_cloudtracker()
 	
 	### Additional Profiles
-	run_time_profiles(filelist)
+	#run_profiler(filelist)
+	
+	os.chdir('./id_profiles')
+	core_profiles.main('core')
 	
 if __name__ == '__main__':
 	main()

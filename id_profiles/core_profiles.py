@@ -8,20 +8,18 @@ import numpy
 #import pcontour
 import cPickle
 import glob
-from netCDF3 import Dataset
+from netCDF4 import Dataset
 import networkx
 
-from thermo import SAM
+import model_param as mc
 
 import os
-model_name = os.getcwd().split('/analysis/')[-1].split('/')[0]
-MC = __import__(model_name)
 
 def main(item):
 
     created_file_ids = []
-    for t in range(MC.nt):
-        ncfile = Dataset('../TIME_PROFILES/cdf/%s_profile_%08d.nc' % (item, t))
+    for t in range(mc.nt):
+        ncfile = Dataset('../time_profiles/cdf/%s_profile_%08d.nc' % (item, t))
 
         ids = ncfile.variables['ids'][:]
         z = ncfile.variables['z'][:]

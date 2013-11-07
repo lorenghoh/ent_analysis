@@ -1,4 +1,4 @@
-import numpy, ConfigParser, os
+import numpy, ConfigParser, glob, os
 
 config = ConfigParser.RawConfigParser()
 config.read('config.cfg')
@@ -6,12 +6,12 @@ model_config = {}
 
 for option in ('ug', 'vg', 'dt', 'dz', 'dy', 'dx'):
 	model_config[option] = config.getfloat('modelconfig', option)
-for option in ('nt', 'nz', 'ny', 'nx'):
+for option in ('nz', 'ny', 'nx'):
 	model_config[option] = config.getint('modelconfig', option)
 for option in ('input_directory', 'data_directory', 'sam_directory'):
 	model_config[option] = config.get('modelconfig', option)
 
-nt, nz, ny, nx = model_config['nt'], model_config['nz'], model_config['ny'], model_config['nx']
+nz, ny, nx = model_config['nz'], model_config['ny'], model_config['nx']
 dt, dx, dy, dz = model_config['dt'], model_config['dz'], model_config['dy'], model_config['dz']
 
 ug, vg = model_config['ug'], model_config['vg']
@@ -19,6 +19,9 @@ ug, vg = model_config['ug'], model_config['vg']
 input_directory = model_config[ 'input_directory']
 data_directory = model_config[ 'data_directory']
 sam_directory = model_config['sam_directory']
+
+filelist = glob.glob('%s/variables/*.nc' % (data_directory))
+nt = len(filelist)
 
 def index_to_zyx(index):
     z = index / (ny*nx)

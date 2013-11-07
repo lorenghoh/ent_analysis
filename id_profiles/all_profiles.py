@@ -6,12 +6,10 @@ from pylab import *
 import numpy
 import cPickle
 import glob
-from netCDF3 import Dataset
+from netCDF4 import Dataset
 import networkx
 
-from thermo import SAM
-
-import bomex as mc
+import model_param as mc
 
 def main(item):
 

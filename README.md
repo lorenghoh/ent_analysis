@@ -19,15 +19,16 @@ Current version of ent_analysis package will not fully run yet.
 ### In Progress ###
 - [ ] Automatically generate profiles
 - [x] Better written ```README.md```
-- [ ] Parallelize ```profiler``` scripts
+- [x] Parallelize ```profiler``` scripts
 - [ ] Modify ```id_profiles``` module for parallelization
-- [ ] Add ```id_profiles``` module for automation
+- [x] Add ```id_profiles``` module for automation
 
 ### Next ###
 
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
 - [ ] Automate data structure
 - [ ] Calculate density perturbation in ```time_profiles```
+- [ ] Better module configuration
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
