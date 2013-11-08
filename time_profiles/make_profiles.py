@@ -44,7 +44,7 @@ def create_savefile(t, data, vars, profile_name):
     ids = data['ids'][:]
     z = data['z'][:]
     print 'cdf/%s_profile_%08d.nc' % (profile_name, t)
-    savefile = Dataset('cdf/%s_profile_%08d.nc' % (profile_name, t), 'w', format='NETCDF3_64BIT')
+    savefile = Dataset('cdf/%s_profile_%08d.nc' % (profile_name, t), 'w', format='NETCDF4_64BIT')
     
     # Create savefile
     savefile.createDimension('ids', len(ids))

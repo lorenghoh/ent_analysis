@@ -13,6 +13,12 @@ from conversion import *
 from time_profiles import make_profiles
 from id_profiles import core_profiles
 
+### Parameters
+conversion = False
+cloudtracker = False
+time_profiles = False
+id_profiles = True
+
 def run_conversion(filelist):
 	# bin3d2nc conversion
 	pool = mp.Pool(PROC)

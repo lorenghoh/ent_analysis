@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#Runtime (690, 130, 128, 128): 3 hours 40 minutes
 
 import sys, glob
 from pylab import *
@@ -23,7 +22,7 @@ def main(item):
             id = int(id)
             print "time: ", t, " id: ", id
             if id not in created_file_ids:
-                savefile = Dataset('cdf/%s_profile_%08d.nc' % (item, id), 'w', format='NETCDF3_64BIT')
+                savefile = Dataset('cdf/%s_profile_%08d.nc' % (item, id), 'w', format='NETCDF4')
                 
                 # Create savefile
                 savefile.createDimension('t', None)
