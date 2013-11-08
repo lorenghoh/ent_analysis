@@ -24,17 +24,18 @@ Current version of ent_analysis package will not fully run yet.
 - [x] Add ```id_profiles``` module for automation
 - [ ] Modify core_entrain
 - [ ] Modify condensed_entrain
+- [ ] Integrate utility scripts into package
 
 ### Next ###
 
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
 - [ ] Automate data structure
-- [ ] Calculate density perturbation in ```time_profiles```
 - [ ] Better module configuration
 - [ ] Output control
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
+- [ ] Calculate density perturbation in ```time_profiles```
 
 ## Getting Started ##
  To run the entrainment analysis toolkit, the following Python modules **must** be installed (as needed for the [*cloudtracker*](https://github.com/freedryk/cloudtracker) module):
