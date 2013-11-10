@@ -17,14 +17,14 @@ Current version of ent_analysis package will not fully run yet.
 - [x] Add parallelization to ```time_profiles``` module
 - [x] Better written ```README.md```
 - [x] Parallelize ```profiler``` scripts
+- [x] Modify ```id_profiles``` module for parallelization
+- [x] Add ```id_profiles``` module for automation (turned off by default)
 
 ### In Progress ###
-- [ ] Automatically generate profiles
-- [x] Modify ```id_profiles``` module for parallelization
-- [x] Add ```id_profiles``` module for automation
+- [x] Automatically generate profiles
 - [ ] Modify core_entrain
 - [ ] Modify condensed_entrain
-- [ ] Integrate utility scripts into package
+- [ ] Make config.cfg modifiable
 
 ### Next ###
 
