@@ -11,13 +11,13 @@ import cloudtracker.main
 
 from conversion import *
 from time_profiles import make_profiles
-from id_profiles import core_profiles
+from time_profiles import core_entrain_profiles
 
 ### Parameters
 conversion = False
 cloudtracker = False
 time_profiles = False
-id_profiles = True
+id_profiles = False
 
 def run_conversion(filelist):
 	# bin3d2nc conversion
@@ -52,17 +52,30 @@ def run_profiler(filelist):
 		
 		pool = mp.Pool(PROC)
 		pool.map(time_profiles_wrapper, enumerate(filelist))
-		
-		# Return to entrainment analysis directory
-		os.chdir('../')	
 	
 	if(id_profiles):
 		### id_profiles
 		os.chdir('./id_profiles')
 		core_profiles.main('core')
+		
+	# Core entrainment profiles
+	os.chdir('./time_profiles')
+	
+	files = glob.glob('%s/core_entrain/*.nc' % mc.data_directory)
+	files.sort()
+	print len(files)
+	return
+	pool = mp.Pool(PROC)
+	pool.map(core_ent_wrapper, enumerate(files))
+	
+	# Return to entrainment analysis directory
+	os.chdir('../')	
 	
 def time_profiles_wrapper((time_step, filename)):
 	make_profiles.main(time_step, filename)
+	
+def core_ent_wrapper((time_step, filename)):
+	core_entrain_profiles.main(time_step, filename)
 
 def main():
 	filelist = glob.glob('%s/variables/*.nc' % mc.data_directory)
