@@ -23,8 +23,8 @@ Current version of ent_analysis package will not fully run yet.
 ### In Progress ###
 - [x] Automatically generate profiles
 - [x] Modify core_entrain
-- [ ] Modify condensed_entrain
-- [ ] Automate/parallelize entrainment profiles
+- [x] Modify condensed_entrain
+- [x] Automate/parallelize entrainment profiles
 - [ ] Make config.cfg modifiable
 
 ### Next ###
