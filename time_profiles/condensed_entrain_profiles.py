@@ -60,7 +60,7 @@ def create_savefile(t, data, vars, profile_name):
 
 #--------------
 
-def make_profiles(profiles, cloud_data, vars, data, files, n):
+def make_profiles(profiles, cloud_data, vars, data, n):
     for item in ('condensed_entrain', ):
         variables = profiles[item]
                 
@@ -135,7 +135,7 @@ def main(time, filename):
         cloud = clouds[id]
         cloud['condensed_entrain'] = numpy.hstack([cloud['condensed'], cloud['condensed_shell']])
 
-        make_profiles(profiles, cloud, vars, data, files, n)
+        make_profiles(profiles, cloud, vars, data, n)
             
     for savefile in savefiles.values():
         savefile.close()

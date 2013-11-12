@@ -61,10 +61,16 @@ def run_profiler(filelist):
 	# Core entrainment profiles
 	os.chdir('./time_profiles')
 	
+	#files = glob.glob('%s/core_entrain/*.nc' % mc.data_directory)
+	#files.sort()
+
+	#pool = mp.Pool(PROC)
+	#pool.map(core_ent_wrapper, enumerate(files))
+	
+	# Condensed entrainment profiles
 	files = glob.glob('%s/core_entrain/*.nc' % mc.data_directory)
 	files.sort()
-	print len(files)
-	return
+
 	pool = mp.Pool(PROC)
 	pool.map(core_ent_wrapper, enumerate(files))
 	
