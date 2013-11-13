@@ -20,6 +20,9 @@ time_profiles = False
 id_profiles = False
 
 def run_conversion(filelist):
+	if not os.path.exists(mc.data_directory)
+		os.makedirs(mc.data_directory)
+	
 	# bin3d2nc conversion
 	pool = mp.Pool(PROC)
 	pool.map(convert.main, filelist)

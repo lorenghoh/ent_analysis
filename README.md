@@ -29,8 +29,8 @@ Current version of ent_analysis package will not fully run yet.
 
 ### Next ###
 
-- [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
 - [ ] Automate data structure
+- [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
 - [ ] Better module configuration
 - [ ] Output control
 
