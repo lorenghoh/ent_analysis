@@ -1,9 +1,0 @@
-#!/bin/bash
-#PBS -l nodes=1:ppn=12
-#PBS -l walltime=12:00:00
-#PBS -q sw
-#PBS -V
-#PBS -N ent_analysis
-
-cd /sb/project/xgk-345-ab/loh/data/ent_analysis/
-python -O -B ./run_analysis.py

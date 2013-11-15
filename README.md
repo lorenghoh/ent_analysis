@@ -25,11 +25,10 @@ Current version of ent_analysis package will not fully run yet.
 - [x] Modify core_entrain
 - [x] Modify condensed_entrain
 - [x] Automate/parallelize entrainment profiles
+- [ ] Automate data structure
 - [ ] Make config.cfg modifiable
 
 ### Next ###
-
-- [ ] Automate data structure
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
 - [ ] Better module configuration
 - [ ] Output control

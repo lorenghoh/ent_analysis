@@ -14,7 +14,7 @@ from time_profiles import make_profiles
 from time_profiles import core_entrain_profiles
 
 ### Parameters
-conversion = False
+conversion = True
 cloudtracker = False
 time_profiles = False
 id_profiles = False
