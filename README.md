@@ -19,18 +19,20 @@ Current version of ent_analysis package will not fully run yet.
 - [x] Parallelize ```profiler``` scripts
 - [x] Modify ```id_profiles``` module for parallelization
 - [x] Add ```id_profiles``` module for automation (turned off by default)
-
-### In Progress ###
 - [x] Automatically generate profiles
 - [x] Modify core_entrain
 - [x] Modify condensed_entrain
 - [x] Automate/parallelize entrainment profiles
-- [ ] Automate data structure
+
+### In Progress ###
+- [x] Automate data structure
 - [ ] Make config.cfg modifiable
+- [ ] ```run_analysis.py``` refactoring
+- [ ] Complete Python module wrapper 
+- [ ] Better module configuration
 
 ### Next ###
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
-- [ ] Better module configuration
 - [ ] Output control
 
 ### Maybe ###
