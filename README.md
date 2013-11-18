@@ -9,21 +9,6 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 ## Current status ##
 Current version of ent_analysis package will not fully run yet. 
 
-### Done ###
-- [x] Modify parallelization to be handled by the main script (```run_analysis.py```)
-- [x] Modularize the main script (for pre-processing)
-- [x] Add parallelization to ```conversion``` module
-- [x] Add parallelization to ```generate_tracking``` module
-- [x] Add parallelization to ```time_profiles``` module
-- [x] Better written ```README.md```
-- [x] Parallelize ```profiler``` scripts
-- [x] Modify ```id_profiles``` module for parallelization
-- [x] Add ```id_profiles``` module for automation (turned off by default)
-- [x] Automatically generate profiles
-- [x] Modify core_entrain
-- [x] Modify condensed_entrain
-- [x] Automate/parallelize entrainment profiles
-
 ### In Progress ###
 - [x] Automate data structure
 - [ ] Make config.cfg modifiable
@@ -39,6 +24,21 @@ Current version of ent_analysis package will not fully run yet.
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
 - [ ] Calculate density perturbation in ```time_profiles```
 
+### Done ###
+- [x] Modify parallelization to be handled by the main script (```run_analysis.py```)
+- [x] Modularize the main script (for pre-processing)
+- [x] Add parallelization to ```conversion``` module
+- [x] Add parallelization to ```generate_tracking``` module
+- [x] Add parallelization to ```time_profiles``` module
+- [x] Better written ```README.md```
+- [x] Parallelize ```profiler``` scripts
+- [x] Modify ```id_profiles``` module for parallelization
+- [x] Add ```id_profiles``` module for automation (turned off by default)
+- [x] Automatically generate profiles
+- [x] Modify core_entrain
+- [x] Modify condensed_entrain
+- [x] Automate/parallelize entrainment profiles
+
 ## Getting Started ##
  To run the entrainment analysis toolkit, the following Python modules **must** be installed (as needed for the [*cloudtracker*](https://github.com/freedryk/cloudtracker) module):
 
@@ -47,7 +47,7 @@ Current version of ent_analysis package will not fully run yet.
 - netcdf4-python *or* pupynere
 
 ### Installation ###
-Download ent_analysis package to SAM directory, or where the model output will be stored for better performance. Ensure that the configuration file ```config.cfg``` is properly modified. 
+Download ent_analysis package to SAM directory, or where the model output will be stored for better performance (*recommended* if the storage is limited). Ensure that the configuration file ```config.cfg``` is properly modified. 
 
 ### Example ###
  To run entrainment analysis toolkit, simple run:```./run_analysis.py```
