@@ -7,13 +7,13 @@ import model_param as mc
 
 PROC = 16
 
-FILELIST = glob.glob(mc.input_directory + '*.bin3D')
-BIN3D2NC = mc.input_directory + 'UTIL/bin3D2nc'
+FILELIST = glob.glob(mc.input_directory + '*.com3D')
+CONVERTER = mc.sam_directory + '/UTIL/com3D2nc'
 
 ############################
 ### No need to edit the following script
 def convert(filename):
-	result = os.system(BIN3D2NC + ' ' + filename)
+	result = os.system(CONVERTER + ' ' + filename)
 	print result
 	
 	if result != 0:
