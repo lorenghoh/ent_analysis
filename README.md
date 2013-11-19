@@ -11,10 +11,10 @@ Current version of ent_analysis package will not fully run yet.
 
 ### In Progress ###
 - [x] Automate data structure
-- [ ] Make config.cfg modifiable
+- [x] Make config.cfg modifiable
 - [ ] ```run_analysis.py``` refactoring
-- [ ] Complete Python module wrapper 
-- [ ] Better module configuration
+- [ ] Refactoring modules for multiprocessing
+- [ ] ```time_parser```
 
 ### Next ###
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
@@ -38,6 +38,9 @@ Current version of ent_analysis package will not fully run yet.
 - [x] Modify core_entrain
 - [x] Modify condensed_entrain
 - [x] Automate/parallelize entrainment profiles
+- [x] ```convert.py``` with dynamic modules
+- [x] Better module configuration
+- [x] Complete Python module wrapper 
 
 ## Getting Started ##
  To run the entrainment analysis toolkit, the following Python modules **must** be installed (as needed for the [*cloudtracker*](https://github.com/freedryk/cloudtracker) module):
@@ -47,7 +50,7 @@ Current version of ent_analysis package will not fully run yet.
 - netcdf4-python *or* pupynere
 
 ### Installation ###
-Download ent_analysis package to SAM directory, or where the model output will be stored for better performance (*recommended* if the storage is limited). Ensure that the configuration file ```config.cfg``` is properly modified. 
+Download ent_analysis package to SAM directory, or where the model output will be stored for better performance (*recommended* if the storage is limited). Ensure that the configuration file ```config.cfg``` is properly modified according to the system configuration. 
 
 ### Example ###
  To run entrainment analysis toolkit, simple run:```./run_analysis.py```
