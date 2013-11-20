@@ -51,9 +51,12 @@ Current version of ent_analysis package will not fully run yet.
 - netcdf4-python *or* pupynere
 
 ### Installation ###
-Download ent_analysis package to SAM directory, or where the model output will be stored for better performance (*recommended* if the storage is limited). Ensure that the configuration file ```config.cfg``` is properly modified according to the system configuration. 
+Download ent_analysis package to SAM directory, or where the model output will be stored for better performance (*recommended* if the storage is limited, as the entrainment analysis package will also store the processed data). Ensure that the configuration file ```config.cfg``` is properly modified according to the system configuration. 
 
 ### Example ###
  To run entrainment analysis toolkit, simple run:```./run_analysis.py```
 
 Or, use the MOAB script ```msub MOAB```
+
+### Output ###
+```id_profiles``` module is turned off by default. Hence, locate the output data files at ```\time_profiles\cdf``` folder.
