@@ -23,6 +23,12 @@ sam_directory = model_config['sam_directory']
 filelist = glob.glob('%s/variables/*.nc' % (data_directory))
 nt = len(filelist)
 
+def time_parser(filename):
+	f = filename.split('_')
+	f = f[-1].split('.')
+	time_step = f[0].lstrip('0')
+	return int(float(time_step))
+
 def index_to_zyx(index):
     z = index / (ny*nx)
     index = index % (ny*nx)

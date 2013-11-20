@@ -13,8 +13,8 @@ Current version of ent_analysis package will not fully run yet.
 - [x] Automate data structure
 - [x] Make config.cfg modifiable
 - [ ] ```run_analysis.py``` refactoring
-- [ ] Refactoring modules for multiprocessing
-- [ ] ```time_parser```
+- [x] ```time_parser```
+- [ ] Module integration 
 
 ### Next ###
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output

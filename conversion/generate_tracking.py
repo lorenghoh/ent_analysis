@@ -24,7 +24,9 @@ import glob
 from thermo import SAM
 import model_param as mc
 
-def main(time_step, filename):
+def main(filename):
+    time_step = mc.time_parser(filename)
+    
     # Load all the data needed to calculation core, clouds, updrafts, etc
     # at the current time_step.
     print "Loading Data..."
@@ -115,7 +117,7 @@ if __name__ == "__main__":
     
     for time_step, filename in enumerate(filelist):
         print "time_step: " + str(time_step)
-        main(time_step, filename)
+        main(filename)
         
 #    if len(sys.argv) == 3:
 #        t0 = int(sys.argv[1])

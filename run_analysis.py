@@ -11,11 +11,9 @@ import model_param as mc
 import cloudtracker.main
 
 ### Parameters
-conversion = True
-cloudtracker = False
+conversion = False
+cloudtracker = True
 profiler = False
-time_profiles = False
-id_profiles = False # Turned off unless needed
 
 # Default working directory for ent_analysis package
 cwd = os.getcwd()
@@ -68,20 +66,18 @@ def run_cloudtracker():
 	cloudtracker.main.main(model_config)
 
 def run_profiler(filelist):
-	if(time_profiles):
-		### time_profiles
-		os.chdir('%s/time_profiles' % (cwd))	
-		
-		if not os.path.exists('%s/time_profiles/cdf' % (cwd)):
-			os.makedirs('%s/time_profiles/cdf' % (cwd))
-		
-		pool = mp.Pool(PROC)
-		pool.map(time_profiles_wrapper, enumerate(filelist))
+	### time_profiles
+	os.chdir('%s/time_profiles' % (cwd))	
 	
-	if(id_profiles):
-		### id_profiles
-		os.chdir('%s/id_profiles' % (cwd))
-		core_profiles.main('core')
+	if not os.path.exists('%s/time_profiles/cdf' % (cwd)):
+		os.makedirs('%s/time_profiles/cdf' % (cwd))
+	
+	pool = mp.Pool(PROC)
+	pool.map(time_profiles_wrapper, enumerate(filelist))
+	
+	### id_profiles
+	os.chdir('%s/id_profiles' % (cwd))
+	core_profiles.main('core')
 		
 	# Core entrainment profiles
 	os.chdir('%s/time_profiles' %(cwd))
@@ -98,8 +94,8 @@ def run_profiler(filelist):
 
 	pool = mp.Pool(PROC)
 	pool.map(core_ent_wrapper, enumerate(files))
-
-def main():
+	
+if __name__ == '__main__':
 	if(conversion):
 		### File conversion (.bin3D -> netCDF)
 		run_conversion()
@@ -111,8 +107,6 @@ def main():
 	if(profiler):
 		### Additional Profiles
 		run_profiler()
-	
-if __name__ == '__main__':
-	main()
+		
 	print 'Entrainment analysis completed'
 	
