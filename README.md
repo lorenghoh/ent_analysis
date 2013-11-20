@@ -12,8 +12,9 @@ Current version of ent_analysis package will not fully run yet.
 ### In Progress ###
 - [x] Automate data structure
 - [x] Make config.cfg modifiable
-- [ ] ```run_analysis.py``` refactoring
 - [x] ```time_parser```
+- [ ] Automatically read dimensions from input files
+- [ ] ```run_analysis.py``` refactoring
 - [ ] Module integration 
 
 ### Next ###

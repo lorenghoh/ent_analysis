@@ -5,15 +5,15 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 # Multiprocessing modules
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 4
+PROC = 8
 
 import model_param as mc
 import cloudtracker.main
 
 ### Parameters
-conversion = False
-cloudtracker = True
-profiler = False
+conversion_module = False
+cloudtracker_module = True
+profiler_module = False
 
 # Default working directory for ent_analysis package
 cwd = os.getcwd()
@@ -44,11 +44,11 @@ def run_conversion():
 	
 	# bin3d2nc conversion
 	filelist = glob.glob('%s/*.com3D' % (mc.input_directory))
-	#wrapper(pkg, 'convert', 'convert', filelist)
+	wrapper(pkg, 'convert', 'convert', filelist)
 	
 	# Move the netCDF files to relevant locations
 	filelist = glob.glob('%s/*.nc' % (mc.input_directory))
-	#wrapper(pkg, 'nc_transfer', 'transfer', filelist)
+	wrapper(pkg, 'nc_transfer', 'transfer', filelist)
 	
 	# generate_tracking
 	filelist = glob.glob('%s/variables/*nc' % (mc.data_directory))
@@ -56,13 +56,11 @@ def run_conversion():
 	
 def run_cloudtracker():
 	# Change the working directory for cloudtracker
-	os.chdir('%s/cloudtracker' % (cwd))
+	os.chdir('%s/cloudtracker/' % (cwd))
 	model_config = mc.model_config
 	
 	# Swap input directory for cloudtracker 
-	model_config['input_directory'] = \
-		model_config['data_directory'] + 'tracking/'
-	
+	model_config['input_directory'] = mc.data_directory + '/tracking/'
 	cloudtracker.main.main(model_config)
 
 def run_profiler(filelist):
@@ -96,15 +94,15 @@ def run_profiler(filelist):
 	pool.map(core_ent_wrapper, enumerate(files))
 	
 if __name__ == '__main__':
-	if(conversion):
+	if(conversion_module):
 		### File conversion (.bin3D -> netCDF)
 		run_conversion()
 	
-	if(cloudtracker):
+	if(cloudtracker_module):
 		### Cloudtracker
 		run_cloudtracker()
 	
-	if(profiler):
+	if(profiler_module):
 		### Additional Profiles
 		run_profiler()
 		

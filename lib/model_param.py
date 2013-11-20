@@ -21,7 +21,7 @@ data_directory = model_config[ 'data_directory']
 sam_directory = model_config['sam_directory']
 
 filelist = glob.glob('%s/variables/*.nc' % (data_directory))
-nt = len(filelist)
+model_config['nt'] = len(filelist)
 
 def time_parser(filename):
 	f = filename.split('_')
