@@ -12,13 +12,10 @@ Current version of ent_analysis package will not fully run yet.
 ### In Progress ###
 - [x] Automate data structure
 - [x] Make config.cfg modifiable
-- [x] ```time_parser```
-- [ ] Automatically read dimensions from input files
-- [ ] ```run_analysis.py``` refactoring
-- [ ] Module integration 
+- [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
 
 ### Next ###
-- [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
+- [ ] Automatically read dimensions from input files
 - [ ] Output control
 
 ### Maybe ###
@@ -26,7 +23,7 @@ Current version of ent_analysis package will not fully run yet.
 - [ ] Calculate density perturbation in ```time_profiles```
 
 ### Done ###
-- [x] Modify parallelization to be handled by the main script (```run_analysis.py```)
+- [x] Modify parallelization to be handled by the main script (```run_analysis.py```)file
 - [x] Modularize the main script (for pre-processing)
 - [x] Add parallelization to ```conversion``` module
 - [x] Add parallelization to ```generate_tracking``` module
@@ -42,6 +39,9 @@ Current version of ent_analysis package will not fully run yet.
 - [x] ```convert.py``` with dynamic modules
 - [x] Better module configuration
 - [x] Complete Python module wrapper 
+- [x] Module integration 
+- [x] ```run_analysis.py``` refactoring
+- [x] ```time_parser``` ->  ```time_picker```
 
 ## Getting Started ##
  To run the entrainment analysis toolkit, the following Python modules **must** be installed (as needed for the [*cloudtracker*](https://github.com/freedryk/cloudtracker) module):
@@ -59,4 +59,4 @@ Download ent_analysis package to SAM directory, or where the model output will b
 Or, use the MOAB script ```msub MOAB```
 
 ### Output ###
-```id_profiles``` module is turned off by default. Hence, locate the output data files at ```\time_profiles\cdf``` folder.
+```id_profiles``` module is turned off by default. Hence, locate the output data files at ```\time_profiles\cdf```.
