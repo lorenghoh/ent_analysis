@@ -23,11 +23,18 @@ sam_directory = model_config['sam_directory']
 filelist = glob.glob('%s/variables/*.nc' % (data_directory))
 model_config['nt'] = len(filelist)
 
-def time_parser(filename):
+def time_picker(file_name):
 	f = filename.split('_')
-	f = f[-1].split('.')
-	time_step = f[0].lstrip('0')
-	return int(float(time_step))
+	
+	if(f[1] == 'CORE'):
+		filelist = glob.glob('%s/core_entrain/*.nc' % data_directory)
+	elif (f[1] == 'CLOUD'):
+		filelist = glob.glob('%s/condensed_entrain/*.nc' % data_directory)
+	else:
+		filelist = glob.glob('%s/variables/*.nc' % data_directory)
+	
+	index = filelist.index(file_name)
+	return index
 
 def index_to_zyx(index):
     z = index / (ny*nx)
