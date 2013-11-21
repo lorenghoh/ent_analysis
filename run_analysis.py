@@ -5,15 +5,16 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 # Multiprocessing modules
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 8
+PROC = 24
 
 import model_param as mc
+from conversion import convert
 import cloudtracker.main
 
 ### Parameters
 conversion_module = True
-cloudtracker_module = False
-profiler_module = False
+cloudtracker_module = True
+profiler_module = True
 
 # Default working directory for ent_analysis package
 cwd = os.getcwd()
@@ -42,13 +43,15 @@ def run_conversion():
 	if not os.path.exists('%s/condensed_entrain/' % (mc.data_directory)):
 		os.makedirs('%s/condensed_entrain/' % (mc.data_directory))
 	
+	convert.convert_stat()
+	
 	# bin3d2nc conversion
 	filelist = glob.glob('%s/*.com3D' % (mc.input_directory))
-	#wrapper(pkg, 'convert', 'convert', filelist)
+	wrapper(pkg, 'convert', 'convert', filelist)
 	
 	# Move the netCDF files to relevant locations
 	filelist = glob.glob('%s/*.nc' % (mc.input_directory))
-	#wrapper(pkg, 'nc_transfer', 'transfer', filelist)
+	wrapper(pkg, 'nc_transfer', 'transfer', filelist)
 	
 	# generate_tracking
 	filelist = glob.glob('%s/variables/*nc' % (mc.data_directory))
@@ -63,7 +66,7 @@ def run_cloudtracker():
 	model_config['input_directory'] = mc.data_directory + '/tracking/'
 	cloudtracker.main.main(model_config) 
 
-def run_profiler(filelist):
+def run_profiler():
 	pkg = 'time_profiles'
 	### time_profiles (with core & cloud entrainment profiles)
 	os.chdir('%s/time_profiles' % (cwd))	
