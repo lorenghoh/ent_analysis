@@ -11,8 +11,8 @@ import model_param as mc
 import cloudtracker.main
 
 ### Parameters
-conversion_module = False
-cloudtracker_module = True
+conversion_module = True
+cloudtracker_module = False
 profiler_module = False
 
 # Default working directory for ent_analysis package
@@ -44,11 +44,11 @@ def run_conversion():
 	
 	# bin3d2nc conversion
 	filelist = glob.glob('%s/*.com3D' % (mc.input_directory))
-	wrapper(pkg, 'convert', 'convert', filelist)
+	#wrapper(pkg, 'convert', 'convert', filelist)
 	
 	# Move the netCDF files to relevant locations
 	filelist = glob.glob('%s/*.nc' % (mc.input_directory))
-	wrapper(pkg, 'nc_transfer', 'transfer', filelist)
+	#wrapper(pkg, 'nc_transfer', 'transfer', filelist)
 	
 	# generate_tracking
 	filelist = glob.glob('%s/variables/*nc' % (mc.data_directory))
@@ -61,37 +61,25 @@ def run_cloudtracker():
 	
 	# Swap input directory for cloudtracker 
 	model_config['input_directory'] = mc.data_directory + '/tracking/'
-	cloudtracker.main.main(model_config)
+	cloudtracker.main.main(model_config) 
 
 def run_profiler(filelist):
-	### time_profiles
+	pkg = 'time_profiles'
+	### time_profiles (with core & cloud entrainment profiles)
 	os.chdir('%s/time_profiles' % (cwd))	
 	
+	# Ensure output folder exists
 	if not os.path.exists('%s/time_profiles/cdf' % (cwd)):
 		os.makedirs('%s/time_profiles/cdf' % (cwd))
-	
-	pool = mp.Pool(PROC)
-	pool.map(time_profiles_wrapper, enumerate(filelist))
-	
-	### id_profiles
-	os.chdir('%s/id_profiles' % (cwd))
-	core_profiles.main('core')
 		
-	# Core entrainment profiles
-	os.chdir('%s/time_profiles' %(cwd))
+	filelist = glob.glob('%s/variables/*.nc' % (mc.data_directory))
+	wrapper(pkg, 'make_profiles', 'main', filelist)
 	
-	files = glob.glob('%s/core_entrain/*.nc' % mc.data_directory)
-	files.sort()
-
-	pool = mp.Pool(PROC)
-	pool.map(core_ent_wrapper, enumerate(files))
+	filelist = glob.glob('%s/core_entrain/*.nc' % (mc.data_directory))
+	wrapper(pkg, 'core_entrain_profiles', 'main', filelist)
 	
-	# Condensed entrainment profiles
-	files = glob.glob('%s/core_entrain/*.nc' % mc.data_directory)
-	files.sort()
-
-	pool = mp.Pool(PROC)
-	pool.map(core_ent_wrapper, enumerate(files))
+	filelist = glob.glob('%s/condensed_entrain/*.nc' % (mc.data_directory))
+	wrapper(pkg, 'condensed_entrain_profiles', 'main', filelist)
 	
 if __name__ == '__main__':
 	if(conversion_module):
