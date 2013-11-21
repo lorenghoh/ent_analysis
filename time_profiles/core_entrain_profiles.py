@@ -82,7 +82,7 @@ def make_profiles(profiles, cloud_data, vars, data, n):
 
 #------------------
 
-def main(time, filename):
+def main(filename):
     vars = {
           'DWDT': var_calcs.dwdt,
           'ETETCOR': var_calcs.etetcor,
@@ -96,6 +96,9 @@ def main(time, filename):
           'VTETCOR': var_calcs.vtetcor,
           'MFTETCOR': var_calcs.mftetcor,
     }
+    
+    # Automatically load time step from output file name
+    time = mc.time_picker(filename)
     
     # Load CDF Files
     nc_file = Dataset(filename)
@@ -151,4 +154,4 @@ if __name__ == "__main__":
     files.sort()
     
     for time, filename in enumerate(files):
-        main(time, filename)
+        main(filename)

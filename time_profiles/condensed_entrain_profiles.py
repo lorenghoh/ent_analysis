@@ -82,7 +82,7 @@ def make_profiles(profiles, cloud_data, vars, data, n):
 
 #------------------
 
-def main(time, filename):
+def main(filename):
     vars = {
           'ETETCLD': var_calcs.etetcld,
           'DTETCLD': var_calcs.dtetcld,
@@ -95,6 +95,9 @@ def main(time, filename):
           'VTETCLD': var_calcs.vtetcld,
           'MFTETCLD': var_calcs.mftetcld,
     }
+    
+    # Automatically load time step from output file name
+    time = mc.time_picker(filename)
     
     # Load CDF Files
     nc_file = Dataset(filename)
@@ -148,4 +151,4 @@ if __name__ == "__main__":
     files.sort()
     
     for time, filename in enumerate(files):
-        main(time, filename)
+        main(filename)
