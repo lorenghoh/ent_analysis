@@ -7,41 +7,20 @@ The **entrainment analysis toolkit** is a package used to post-process output da
  The raw ```.bin3D``` data from SAM is converted, and sorted to be used by  [*cloudtracker*](https://github.com/freedryk/cloudtracker). Then for each cloud parcel, the package creates a ```netCDF``` file containing all the relevant output data from SAM. Now with the individual cloud data collected by ```cloudtracker```, it is possible to apply reanalysis scripts (or *analysis modules*) to produce a more detailed picture of each cloud parcel -- these *modules* will modify output ```netCDF``` files and add additional statistical variables needed for the entrainment analysis. 
 
 ## Current status ##
-Current version of ent_analysis package will not fully run yet. 
+```ent_analysis``` is now in production. 
 
 ### In Progress ###
-- [x] Automate data structure
-- [x] Make config.cfg modifiable
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
+- [ ] Check file creation to avoid duplicates
 
 ### Next ###
 - [ ] Automatically read dimensions from input files
 - [ ] Output control
+- [ ] Add utility scripts
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
 - [ ] Calculate density perturbation in ```time_profiles```
-
-### Done ###
-- [x] Modify parallelization to be handled by the main script (```run_analysis.py```)file
-- [x] Modularize the main script (for pre-processing)
-- [x] Add parallelization to ```conversion``` module
-- [x] Add parallelization to ```generate_tracking``` module
-- [x] Add parallelization to ```time_profiles``` module
-- [x] Better written ```README.md```
-- [x] Parallelize ```profiler``` scripts
-- [x] Modify ```id_profiles``` module for parallelization
-- [x] Add ```id_profiles``` module for automation (turned off by default)
-- [x] Automatically generate profiles
-- [x] Modify core_entrain
-- [x] Modify condensed_entrain
-- [x] Automate/parallelize entrainment profiles
-- [x] ```convert.py``` with dynamic modules
-- [x] Better module configuration
-- [x] Complete Python module wrapper 
-- [x] Module integration 
-- [x] ```run_analysis.py``` refactoring
-- [x] ```time_parser``` ->  ```time_picker```
 
 ## Getting Started ##
  To run the entrainment analysis toolkit, the following Python modules **must** be installed (as needed for the [*cloudtracker*](https://github.com/freedryk/cloudtracker) module):
