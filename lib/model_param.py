@@ -20,11 +20,10 @@ input_directory = model_config[ 'input_directory']
 data_directory = model_config[ 'data_directory']
 sam_directory = model_config['sam_directory']
 
-filelist = glob.glob('%s/variables/*.nc' % (data_directory))
-model_config['nt'] = len(filelist)
+model_config['nt'] = len( glob.glob('%s/variables/*.nc' % data_directory))
 
 def time_picker(file_name):
-	f = filename.split('_')
+	f = file_name.split('_')
 	
 	if(f[1] == 'CORE'):
 		filelist = glob.glob('%s/core_entrain/*.nc' % data_directory)
