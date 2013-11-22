@@ -11,12 +11,11 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 
 ### In Progress ###
 - [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
-- [ ] Check file creation to avoid duplicates
 
 ### Next ###
 - [ ] Automatically read dimensions from input files
 - [ ] Output control
-- [ ] Add utility scripts
+- [ ] Check file creation to avoid duplicates
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
