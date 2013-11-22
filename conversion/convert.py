@@ -6,9 +6,9 @@ import model_param as mc
 
 PROC = 16
 
-FILELIST = glob.glob(mc.input_directory + '*.com3D')
+FILELIST = glob.glob(mc.input_directory + '*.bin3D')
 SAM = mc.sam_directory
-CONVERTER = SAM + '/UTIL/com3D2nc '
+CONVERTER = SAM + '/UTIL/bin3D2nc '
 
 ############################
 ### No need to edit the following script
