@@ -10,16 +10,15 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 ```ent_analysis``` is now in production. 
 
 ### In Progress ###
-- [ ] Complete (*automated*) test run using the standard ```BOMEX_25m_25m_25m``` output
-
-### Next ###
-- [ ] Automatically read dimensions from input files
 - [ ] Output control
 - [ ] Check file creation to avoid duplicates
 
+### Next ###
+- [ ] Automatically read dimensions from input files
+- [ ] Ensure no data contamination by re-run
+
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
-- [ ] Calculate density perturbation in ```time_profiles```
 
 ## Getting Started ##
  To run the entrainment analysis toolkit, the following Python modules **must** be installed (as needed for the [*cloudtracker*](https://github.com/freedryk/cloudtracker) module):
