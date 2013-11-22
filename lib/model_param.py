@@ -20,7 +20,8 @@ input_directory = model_config[ 'input_directory']
 data_directory = model_config[ 'data_directory']
 sam_directory = model_config['sam_directory']
 
-model_config['nt'] = len( glob.glob('%s/variables/*.nc' % data_directory))
+def get_nt():
+	return  len( glob.glob('%s/variables/*.nc' % data_directory))
 
 def time_picker(file_name):
 	f = file_name.split('_')

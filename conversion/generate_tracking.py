@@ -29,8 +29,6 @@ def main(filename):
     
     # Load all the data needed to calculation core, clouds, updrafts, etc
     # at the current time_step.
-    print "Loading Data..."
-
     nc_file = Dataset(filename)    
     tabs_field = nc_file.variables['TABS'][0,:].astype(double)
     qv_field = nc_file.variables['QV'][0,:].astype(double)/1000.

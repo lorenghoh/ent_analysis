@@ -5,7 +5,7 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 # Multiprocessing modules
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 60
+PROC = 64
 
 import model_param as mc
 from conversion import convert
@@ -29,11 +29,12 @@ def wrapper(module_name, script_name, function_name, filelist):
 	
 def run_conversion():
 	pkg = 'conversion'
+	os.chdir(mc.input_directory)
 	
 	# Ensure the data folders exist at the target location
 	if not os.path.exists(mc.data_directory):
 		os.makedirs(mc.data_directory)
-		
+	
 	if not os.path.exists('%s/variables/' % (mc.data_directory)):
 		os.makedirs('%s/variables/' % (mc.data_directory))
 	if not os.path.exists('%s/tracking/' % (mc.data_directory)):
@@ -43,14 +44,14 @@ def run_conversion():
 	if not os.path.exists('%s/condensed_entrain/' % (mc.data_directory)):
 		os.makedirs('%s/condensed_entrain/' % (mc.data_directory))
 	
-	convert.convert_stat()
+	#convert.convert_stat()
 	
 	# bin3d2nc conversion
-	filelist = glob.glob('%s/*.com3D' % (mc.input_directory))
+	filelist = glob.glob('./*.bin3D')
 	wrapper(pkg, 'convert', 'convert', filelist)
 	
 	# Move the netCDF files to relevant locations
-	filelist = glob.glob('%s/*.nc' % (mc.input_directory))
+	filelist = glob.glob('./*.nc')
 	wrapper(pkg, 'nc_transfer', 'transfer', filelist)
 	
 	# generate_tracking
@@ -62,13 +63,15 @@ def run_cloudtracker():
 	os.chdir('%s/cloudtracker/' % (cwd))
 	model_config = mc.model_config
 	
+	# Update nt
+	model_config['nt'] = mc.get_nt()
+	
 	# Swap input directory for cloudtracker 
 	model_config['input_directory'] = mc.data_directory + '/tracking/'
 	cloudtracker.main.main(model_config) 
 
 def run_profiler():
 	pkg = 'time_profiles'
-	### time_profiles (with core & cloud entrainment profiles)
 	os.chdir('%s/time_profiles' % (cwd))	
 	
 	# Ensure output folder exists

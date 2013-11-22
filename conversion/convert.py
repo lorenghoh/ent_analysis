@@ -1,12 +1,7 @@
 #!/usr/bin/python                                                                                             
 import os, glob, shutil
-import multiprocessing as mp
-
 import model_param as mc
 
-PROC = 16
-
-FILELIST = glob.glob(mc.input_directory + '*.bin3D')
 SAM = mc.sam_directory
 CONVERTER = SAM + '/UTIL/bin3D2nc '
 
@@ -32,13 +27,5 @@ def convert_stat():
 		raise "Conversion failed!"
 	else:
 		shutil.copy(nc_name, mc.data_directory)
-		
-def main():
-	pool = mp.Pool(PROC)
-	pool.map(convert, FILELIST)
-	
-	print 'All conversion processes completed.'
 
-if __name__ == '__main__':
-	main()
 	

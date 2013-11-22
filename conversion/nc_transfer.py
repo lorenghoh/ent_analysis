@@ -4,6 +4,7 @@ import model_param as mc
 
 def transfer(filename):
 	f = filename.split('_')
+	print "Transferring... " + filename
 	
 	# netCDF file destination base folder
 	dst = mc.data_directory

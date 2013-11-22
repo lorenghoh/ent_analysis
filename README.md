@@ -38,4 +38,4 @@ Download ent_analysis package to SAM directory, or where the model output will b
 Or, use the MOAB script ```msub MOAB```
 
 ### Output ###
-```id_profiles``` module is turned off by default. Hence, locate the output data files at ```\time_profiles\cdf```.
+```id_profiles``` module is turned off by default. Hence, locate the output data files at ```/time_profiles/cdf```.

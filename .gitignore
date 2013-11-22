@@ -3,7 +3,6 @@
 *.nc
 *.txt
 
-scripts/
 output/
 pkl/
 cdf/
