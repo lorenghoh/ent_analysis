@@ -31,7 +31,7 @@ def convert_stat():
 		print "Process aborted."
 		raise "Conversion failed!"
 	else:
-		shutil.move(nc_name, mc.data_directory)
+		shutil.copy(nc_name, mc.data_directory)
 		
 def main():
 	pool = mp.Pool(PROC)
