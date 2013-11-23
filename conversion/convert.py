@@ -28,7 +28,7 @@ def convert_stat():
 	nc_name = os.path.join(path, nc_name)
 	
 	nc_new = name[0] + '_stat.nc'
-	nc_new = os.path.join(path, nc_new)
+	nc_new = os.path.join(mc.data_directory, nc_new)
 	
 	result = os.system(SAM + '/UTIL/stat2nc ' + stat_name)
 	print result
@@ -37,6 +37,5 @@ def convert_stat():
 		print "Process aborted."
 		raise "Conversion failed!"
 	else: 
-		os.rename(nc_name, nc_new)
-		shutil.copy(nc_name, mc.data_directory)
+		shutil.copy(nc_name, nc_new)
 	

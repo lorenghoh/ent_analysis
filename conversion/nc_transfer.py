@@ -3,8 +3,9 @@ import os, glob, shutil
 import model_param as mc
 
 def transfer(filename):
-	f = filename.split('_')
-	print "Transferring... " + filename
+	path, name = os.path.split(filename)
+	f = name.split('_')
+	print "Transferring... " + name
 	
 	# netCDF file destination base folder
 	dst = mc.data_directory
