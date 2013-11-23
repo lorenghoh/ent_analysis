@@ -1,7 +1,7 @@
 import sys, os, glob
 from netCDF4 import Dataset as data
 
-profile = 'core' # Profile name
+profile = 'core_entrain' # Profile name
 vars = {'ids', 't', 'z', 'AREA'} # Target variables
 
 # Configure filelist from time_profiles

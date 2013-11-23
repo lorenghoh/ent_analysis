@@ -5,7 +5,7 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 # Multiprocessing modules
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 64
+PROC = 72
 
 import model_param as mc
 from conversion import convert
@@ -44,7 +44,8 @@ def run_conversion():
 	if not os.path.exists('%s/condensed_entrain/' % (mc.data_directory)):
 		os.makedirs('%s/condensed_entrain/' % (mc.data_directory))
 	
-	#convert.convert_stat()
+	# Generate cloud field statistic 
+	convert.convert_stat()
 	
 	# bin3d2nc conversion
 	filelist = glob.glob('./*.bin3D')
@@ -89,15 +90,12 @@ def run_profiler():
 	
 if __name__ == '__main__':
 	if(conversion_module):
-		### File conversion (.bin3D -> netCDF)
 		run_conversion()
 	
 	if(cloudtracker_module):
-		### Cloudtracker
 		run_cloudtracker()
 	
 	if(profiler_module):
-		### Additional Profiles
 		run_profiler()
 		
 	print 'Entrainment analysis completed'

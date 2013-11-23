@@ -18,10 +18,17 @@ def convert(filename):
 def convert_stat():
 	stat_name = glob.iglob(SAM + '/OUT_STAT/*.stat').next()
 	
-	path, stat_name = os.path.split(stat_name)
-	stat_name = os.path.splitext(stat_name)
-	nc_name = stat_name[0] + '_stat.nc'
+	print "Converting stat file..."
+	print stat_name
+	
+	path, name = os.path.split(stat_name)
+	name = os.path.splitext(name)
+	
+	nc_name = name[0] + '.nc'
 	nc_name = os.path.join(path, nc_name)
+	
+	nc_new = name[0] + '_stat.nc'
+	nc_new = os.path.join(path, nc_new)
 	
 	result = os.system(SAM + '/UTIL/stat2nc ' + stat_name)
 	print result
@@ -30,5 +37,6 @@ def convert_stat():
 		print "Process aborted."
 		raise "Conversion failed!"
 	else: 
+		os.rename(nc_name, nc_new_name)
 		shutil.copy(nc_name, mc.data_directory)
 	

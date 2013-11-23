@@ -44,7 +44,7 @@ def create_savefile(t, data, vars, profile_name):
     ids = data['ids'][:]
     z = data['z'][:]
     print 'cdf/%s_profile_%08d.nc' % (profile_name, t)
-    savefile = Dataset('cdf/%s_profile_%08d.nc' % (profile_name, t), 'w', format='NETCDF4_64BIT')
+    savefile = Dataset('cdf/%s_profile_%08d.nc' % (profile_name, t), 'w', format='NETCDF4')
     
     # Create savefile
     savefile.createDimension('ids', len(ids))
@@ -116,7 +116,7 @@ def main(filename):
     
     # Load CDF Files
     nc_file = Dataset(filename)
-    stat_file = Dataset('%s/stat_1min.nc' % mc.data_directory)
+    stat_file = Dataset(mc.get_stat())
 
     data = {'z': nc_file.variables['z'][:].astype(double),
             'p': nc_file.variables['p'][:].astype(double),
@@ -129,10 +129,10 @@ def main(filename):
    
     # Load the cloud data at that timestep
     clouds = cPickle.load(open(cloud_filename, 'rb'))
-        
+       
     ids = clouds.keys()
     ids.sort()
-        
+
     data['ids'] = numpy.array(ids)
     for name in ('QV', 'QN', 'TABS', 'PP', 'U', 'V', 'W', 'TR01'):
         data[name] = nc_file.variables[name][0, :].astype(numpy.double)

@@ -41,7 +41,7 @@ def index_to_zyx(index):
 def create_savefile(t, data, vars, profile_name):
     ids = data['ids'][:]
     z = data['z'][:]
-    savefile = Dataset('cdf/%s_profile_%08d.nc' % (profile_name, t), 'w', format='NETCDF3_64BIT')
+    savefile = Dataset('cdf/%s_profile_%08d.nc' % (profile_name, t), 'w', format='NETCDF4')
     
     # Create savefile
     savefile.createDimension('ids', len(ids))
@@ -101,7 +101,7 @@ def main(filename):
     
     # Load CDF Files
     nc_file = Dataset(filename)
-    stat_file = Dataset('%s/stat_1min.nc' % mc.data_directory)
+    stat_file = Dataset(mc.get_stat())
 
     data = {'z': stat_file.variables['z'][:].astype(double),
             'RHO' : stat_file.variables['RHO'][time,:].astype(double),
