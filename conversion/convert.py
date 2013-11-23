@@ -37,6 +37,6 @@ def convert_stat():
 		print "Process aborted."
 		raise "Conversion failed!"
 	else: 
-		os.rename(nc_name, nc_new_name)
+		os.rename(nc_name, nc_new)
 		shutil.copy(nc_name, mc.data_directory)
 	
