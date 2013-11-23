@@ -7,7 +7,7 @@ The **entrainment analysis toolkit** is a package used to post-process output da
  The raw ```.bin3D``` data from SAM is converted, and sorted to be used by  [*cloudtracker*](https://github.com/freedryk/cloudtracker). Then for each cloud parcel, the package creates a ```netCDF``` file containing all the relevant output data from SAM. Now with the individual cloud data collected by ```cloudtracker```, it is possible to apply reanalysis scripts (or *analysis modules*) to produce a more detailed picture of each cloud parcel -- these *modules* will modify output ```netCDF``` files and add additional statistical variables needed for the entrainment analysis. 
 
 ## Current status ##
-```ent_analysis``` is now in production. 
+```ent_analysis``` is now in production. Bug fixes incoming.
 
 ### In Progress ###
 - [ ] Output control
