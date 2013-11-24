@@ -16,6 +16,7 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 ### Next ###
 - [ ] Automatically read dimensions from input files
 - [ ] Ensure no data contamination by re-run
+- [ ] ```id_profiles```
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
@@ -33,7 +34,7 @@ Download ent_analysis package to SAM directory, or where the model output will b
 ### Example ###
  To run entrainment analysis toolkit, simple run:```./run_analysis.py```
 
-Or, use the MOAB script ```msub MOAB```
+Or, use the MOAB script ```msub run.pbs```
 
 ### Output ###
 ```id_profiles``` module is turned off by default. Hence, locate the output data files at ```/time_profiles/cdf```.
