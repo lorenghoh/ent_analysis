@@ -5,7 +5,7 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 # Multiprocessing modules
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 72
+PROC = 60
 
 import model_param as mc
 from conversion import convert
@@ -88,15 +88,16 @@ def run_profiler():
 	filelist = glob.glob('%s/condensed_entrain/*.nc' % (mc.data_directory))
 	wrapper(pkg, 'condensed_entrain_profiles', 'main', filelist)
 	
+	filelist = glob.glob('cdf/core_env*.nc')
+	wrapper(pkg, 'chi_core', 'makechi', filelist)
+	
+	filelist = glob.glob('cdf/condensed_env*.nc')
+	wrapper(pkg, 'chi_condensed', 'makechi', filelist)
+	
 if __name__ == '__main__':
-	if(conversion_module):
-		run_conversion()
-	
-	if(cloudtracker_module):
-		run_cloudtracker()
-	
-	if(profiler_module):
-		run_profiler()
+	run_conversion()
+	run_cloudtracker()
+	run_profiler()
 		
 	print 'Entrainment analysis completed'
 	
