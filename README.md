@@ -16,7 +16,6 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 ### Next ###
 - [ ] Automatically read dimensions from input files
 - [ ] Ensure no data contamination by re-run
-- [ ] ```id_profiles```
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
