@@ -25,7 +25,8 @@ def get_stat():
 	return filename
 
 def get_nt():
-	return  len( glob.glob('%s/variables/*.nc' % data_directory))
+	nt = len( glob.glob('%s/variables/*.nc' % data_directory))
+	return nt
 
 def time_picker(file_name):
 	f = file_name.split('/')[-1].split('_')
