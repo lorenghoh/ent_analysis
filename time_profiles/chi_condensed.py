@@ -5,16 +5,16 @@ import numpy
 from thermo import SAM
 import glob
 
-import gcssarm as mc
+import model_param as mc
 
 def makechi(filename):
     key = int(filename.split('/')[-1].split('_')[-1].split('.')[0])
-    print key
+    print "chi_condensed_profile", key
 
     condensedfile = Dataset('cdf/condensed_profile_%08d.nc' % key)
     envfile = Dataset('cdf/condensed_env_profile_%08d.nc' % key)
     shellfile = Dataset('cdf/condensed_shell_profile_%08d.nc' % key)
-    statfile = Dataset('%s/stat_1min.nc' % mc.data_dir)
+    statfile = Dataset(mc.get_stat())
  
     t = numpy.atleast_1d(condensedfile.variables['ids'][:])
 

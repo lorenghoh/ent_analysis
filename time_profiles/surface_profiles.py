@@ -4,8 +4,8 @@
 from pylab import *
 import numpy
 import cPickle
-from netCDF3 import Dataset
-import sys
+from netCDF4 import Dataset
+import sys, os
 
 from thermo import SAM
 import model_param as mc
@@ -76,43 +76,34 @@ def make_profiles(variables, cloud_data, vars, data, n):
 
 #------------------
 
-def main(times):
-    stat_file = Dataset('%s/stat_1min.nc' % mc.data_directory)
-    data = {'z': stat_file.variables['z'][:].astype(double),
+def main():
+	stat_file = Dataset('%s/stat_1min.nc' % mc.data_directory)
+	data = {'z': stat_file.variables['z'][:].astype(double),
             'RHO' : stat_file.variables['RHO'][0,:].astype(double),
             'PRES' : stat_file.variables['PRES'][0,:].astype(double)*100.}
-    stat_file.close()
+	stat_file.close()
     
-    vars = ('CORE_SURFACE', 'CONDENSED_SURFACE')
+	vars = ('CORE_SURFACE', 'CONDENSED_SURFACE')
+	times = arange(0, mc.nt, mc.nt/60.)
+	
+	for t in times:
+		# For each cloud, iterate over all times
+		cloud_filename = '../cloudtracker/pkl/cloud_data_%08d.pkl' % t
+		# Load the cloud data at that timestep
+		clouds = cPickle.load(open(cloud_filename, 'rb'))
 
-    for t in times:
-        # For each cloud, iterate over all times
-        cloud_filename = '../cloudtracker/pkl/cloud_data_%08d.pkl' % t
-        # Load the cloud data at that timestep
-        clouds = cPickle.load(open(cloud_filename, 'rb'))
-        
-        ids = clouds.keys()
-        ids.sort()
-        
-        data['ids'] = numpy.array(ids)
-                
-        # For each cloud, create a savefile for each profile
-        savefile, variables = create_savefile(t, data, vars, 'surface')
-        
-        for n, id in enumerate(ids):
-            print "time: ", t, " id: ", id
-            # Select the current cloud id
-            cloud = clouds[id]
-            make_profiles(variables, cloud, vars, data, n)
+		ids = clouds.keys()
+		ids.sort()
+
+		data['ids'] = numpy.array(ids)
+
+		# For each cloud, create a savefile for each profile
+		savefile, variables = create_savefile(t, data, vars, 'surface')
+
+		for n, id in enumerate(ids):
+			print "time: ", t, " id: ", id
+			# Select the current cloud id
+			cloud = clouds[id]
+			make_profiles(variables, cloud, vars, data, n)
             
         savefile.close()
-
-   
-if __name__ == "__main__":
-    t0 = 0
-    dt = 1
-    if len(sys.argv) == 3:
-        t0 = int(sys.argv[1])
-        dt = int(sys.argv[2])
-
-    main(arange(t0, mc.nt, dt))

@@ -72,6 +72,7 @@ def run_cloudtracker():
 	cloudtracker.main.main(model_config) 
 
 def run_profiler():
+	### Time Profiles
 	pkg = 'time_profiles'
 	os.chdir('%s/time_profiles' % (cwd))	
 	
@@ -93,6 +94,9 @@ def run_profiler():
 	
 	filelist = glob.glob('cdf/condensed_env*.nc')
 	wrapper(pkg, 'chi_condensed', 'makechi', filelist)
+	
+	### ID Profiles
+	filelist = glob.glob('cdf
 	
 if __name__ == '__main__':
 	run_conversion()
