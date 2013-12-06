@@ -19,6 +19,11 @@ profiler_module = True
 # Default working directory for ent_analysis package
 cwd = os.getcwd()
 
+# Output profile names
+profiles = {'condensed', 'condensed_env', 'condensed_edge', \
+	'condensed_shell' , 'core', 'core_env', 'core_edge', 'core_shell', \
+	'plume', 'condensed_entrain', 'core_entrain', 'surface'}
+
 def wrapper(module_name, script_name, function_name, filelist):
 	pkg = __import__ (module_name, globals(), locals(), ['*'])
 	md = getattr(pkg, script_name)
@@ -65,7 +70,7 @@ def run_cloudtracker():
 	model_config = mc.model_config
 	
 	# Update nt
-	model_config['nt'] = mc.get_nt()
+	model_config['nt'] = mc.nt
 	
 	# Swap input directory for cloudtracker 
 	model_config['input_directory'] = mc.data_directory + '/tracking/'
@@ -80,6 +85,7 @@ def run_profiler():
 	if not os.path.exists('%s/time_profiles/cdf' % (cwd)):
 		os.makedirs('%s/time_profiles/cdf' % (cwd))
 		
+	# Main thermodynamic profiles
 	filelist = glob.glob('%s/variables/*.nc' % (mc.data_directory))
 	wrapper(pkg, 'make_profiles', 'main', filelist)
 	
@@ -89,19 +95,32 @@ def run_profiler():
 	filelist = glob.glob('%s/condensed_entrain/*.nc' % (mc.data_directory))
 	wrapper(pkg, 'condensed_entrain_profiles', 'main', filelist)
 	
+	# Chi Profiles
 	filelist = glob.glob('cdf/core_env*.nc')
 	wrapper(pkg, 'chi_core', 'makechi', filelist)
 	
 	filelist = glob.glob('cdf/condensed_env*.nc')
 	wrapper(pkg, 'chi_condensed', 'makechi', filelist)
 	
-	### ID Profiles
-	filelist = glob.glob('cdf
+	# Surface Profiles (based on cloud tracking algorithm)
+	wrapper(pkg, 'surface_profiles', 'main', range(mc.nt)
 	
+def run_id_profiles():
+	### ID Profiles
+	pkg = 'id_profiles'
+	os.chdir('%s/id_profiles' % (cwd))
+	
+	# Ensure output folder exists
+	if not os.path.exists('%s/id_profiles/cdf' % (cwd)):
+		os.makedirs('%s/id_profiles/cdf' % (cwd))
+	
+	wrapper(pkg, 'all_profiles', 'main', profiles)
+
 if __name__ == '__main__':
 	run_conversion()
 	run_cloudtracker()
 	run_profiler()
-		
+	#run_id_profiles()
+	
 	print 'Entrainment analysis completed'
 	
