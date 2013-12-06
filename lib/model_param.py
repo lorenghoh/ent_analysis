@@ -10,8 +10,6 @@ for option in ('nz', 'ny', 'nx'):
 	model_config[option] = config.getint('modelconfig', option)
 for option in ('input_directory', 'data_directory', 'sam_directory'):
 	model_config[option] = config.get('modelconfig', option)
-
-nt = len( glob.glob('%s/variables/*.nc' % data_directory))
 	
 nz, ny, nx = model_config['nz'], model_config['ny'], model_config['nx']
 dt, dx, dy, dz = model_config['dt'], model_config['dz'], model_config['dy'], model_config['dz']
@@ -21,6 +19,8 @@ ug, vg = model_config['ug'], model_config['vg']
 input_directory = model_config[ 'input_directory']
 data_directory = model_config[ 'data_directory']
 sam_directory = model_config['sam_directory']
+
+nt = len( glob.glob('%s/variables/*.nc' % data_directory))
 
 def get_stat():
 	filename = glob.iglob(data_directory + '/*_stat.nc').next()

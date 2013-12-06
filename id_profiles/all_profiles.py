@@ -10,10 +10,10 @@ import networkx
 import model_param as mc
 
 def main(item):
-
     created_file_ids = []
-    for t in range(mc.nt):
+    for t in range(mc.get_nt()):
         ncfile = Dataset('../time_profiles/cdf/%s_profile_%08d.nc' % (item, t))
+	print 'time_profiles/cdf/%s_profile_%08d.nc' % (item, t)
 
         ids = ncfile.variables['ids'][:]
         z = ncfile.variables['z'][:]

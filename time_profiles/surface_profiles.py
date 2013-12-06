@@ -10,6 +10,13 @@ import sys, os
 from thermo import SAM
 import model_param as mc
 
+# Load mean cloud field stat
+stat_file = Dataset(mc.get_stat())
+data = {'z': stat_file.variables['z'][:].astype(double),
+    'RHO' : stat_file.variables['RHO'][0,:].astype(double),
+    'PRES' : stat_file.variables['PRES'][0,:].astype(double)*100.}
+stat_file.close()
+
 def create_savefile(t, data, vars, profile_name):
     ids = data['ids'][:]
     z = data['z'][:]
@@ -76,34 +83,26 @@ def make_profiles(variables, cloud_data, vars, data, n):
 
 #------------------
 
-def main():
-	stat_file = Dataset('%s/stat_1min.nc' % mc.data_directory)
-	data = {'z': stat_file.variables['z'][:].astype(double),
-            'RHO' : stat_file.variables['RHO'][0,:].astype(double),
-            'PRES' : stat_file.variables['PRES'][0,:].astype(double)*100.}
-	stat_file.close()
-    
+def main(t):
 	vars = ('CORE_SURFACE', 'CONDENSED_SURFACE')
-	times = arange(0, mc.nt, mc.nt/60.)
-	
-	for t in times:
-		# For each cloud, iterate over all times
-		cloud_filename = '../cloudtracker/pkl/cloud_data_%08d.pkl' % t
-		# Load the cloud data at that timestep
-		clouds = cPickle.load(open(cloud_filename, 'rb'))
 
-		ids = clouds.keys()
-		ids.sort()
+	# For each cloud, iterate over all times
+	cloud_filename = '../cloudtracker/pkl/cloud_data_%08d.pkl' % t
+	# Load the cloud data at that timestep
+	clouds = cPickle.load(open(cloud_filename, 'rb'))
 
-		data['ids'] = numpy.array(ids)
+	ids = clouds.keys()
+	ids.sort()
 
-		# For each cloud, create a savefile for each profile
-		savefile, variables = create_savefile(t, data, vars, 'surface')
+	data['ids'] = numpy.array(ids)
 
-		for n, id in enumerate(ids):
-			print "time: ", t, " id: ", id
-			# Select the current cloud id
-			cloud = clouds[id]
-			make_profiles(variables, cloud, vars, data, n)
+	# For each cloud, create a savefile for each profile
+	savefile, variables = create_savefile(t, data, vars, 'surface')
+
+	for n, id in enumerate(ids):
+		print "time: ", t, " id: ", id
+		# Select the current cloud id
+		cloud = clouds[id]
+		make_profiles(variables, cloud, vars, data, n)
             
         savefile.close()

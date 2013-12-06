@@ -103,17 +103,17 @@ def run_profiler():
 	wrapper(pkg, 'chi_condensed', 'makechi', filelist)
 	
 	# Surface Profiles (based on cloud tracking algorithm)
-	wrapper(pkg, 'surface_profiles', 'main', range(mc.nt)
-	
+	wrapper(pkg, 'surface_profiles', 'main', range(mc.nt))
+
 def run_id_profiles():
 	### ID Profiles
 	pkg = 'id_profiles'
 	os.chdir('%s/id_profiles' % (cwd))
-	
+
 	# Ensure output folder exists
 	if not os.path.exists('%s/id_profiles/cdf' % (cwd)):
 		os.makedirs('%s/id_profiles/cdf' % (cwd))
-	
+
 	wrapper(pkg, 'all_profiles', 'main', profiles)
 
 if __name__ == '__main__':
