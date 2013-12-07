@@ -10,12 +10,13 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 ```ent_analysis``` is now in production. Bug fixes incoming.
 
 ### In Progress ###
-- [ ] Output control
 - [ ] Check file creation to avoid duplicates
+- [ ] Automatically read dimensions from input files
+- [ ] Implement time module to measure execution time
 
 ### Next ###
-- [ ] Automatically read dimensions from input files
 - [ ] Ensure no data contamination by re-run
+- [ ] Output control
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
