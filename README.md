@@ -7,7 +7,11 @@ The **entrainment analysis toolkit** is a package used to post-process output da
  The raw ```.bin3D``` data from SAM is converted, and sorted to be used by  [*cloudtracker*](https://github.com/freedryk/cloudtracker). Then for each cloud parcel, the package creates a ```netCDF``` file containing all the relevant output data from SAM. Now with the individual cloud data collected by ```cloudtracker```, it is possible to apply reanalysis scripts (or *analysis modules*) to produce a more detailed picture of each cloud parcel -- these *modules* will modify output ```netCDF``` files and add additional statistical variables needed for the entrainment analysis. 
 
 ## Current status ##
-```ent_analysis``` is now in production. Bug fixes incoming.
+```ent_analysis``` is now in production.
+
+> (12/10/2013) The development of the analysis modules is more or less done (except maybe a number of bug fixes and the introduction of a better parallelization scheme for ```id_profiles``` and ```surface_profiles```, which is a little more difficult due to the way they are written). 
+>
+>Unless otherwise requested, I will most likely not include the utility scripts in the package.
 
 ### In Progress ###
 - [ ] Check file creation to avoid duplicates
@@ -15,8 +19,8 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 - [ ] Implement time module to measure execution time
 
 ### Next ###
+- [ ] Implement deeper parallelization for ```id_profiles```
 - [ ] Ensure no data contamination by re-run
-- [ ] Output control
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
@@ -37,4 +41,4 @@ Download ent_analysis package to SAM directory, or where the model output will b
 Or, use the MOAB script ```msub run.pbs```
 
 ### Output ###
-```id_profiles``` module is turned off by default. Hence, locate the output data files at ```/time_profiles/cdf```.
+The post-processed output files are in ```/time_profiles/cdf``` and in ```/id_profiles/cdf```. 
