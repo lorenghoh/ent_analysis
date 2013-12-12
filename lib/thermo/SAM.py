@@ -49,7 +49,7 @@ def find_chi_theta(thetal, thetal_env, thetav, thetav_env, qt, qt_env, T, p):
     gamma = (Lv/cp)*0.622*dtesatw(T)/(p - esatw(T))
     delta = (1 - epsilon)/epsilon
     delta = lam
-    beta = 1./(1. + gamma)*(1. + (1. + delta)*gamma*alpha)
+    beta = (1. + (1. + delta)*gamma*alpha)/(1. + gamma)
     
     chi = del_thetav/(beta*del_thetal + (beta - alpha)*Lv/(cp*A)*del_qt)
 

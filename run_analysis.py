@@ -5,16 +5,11 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 # Multiprocessing modules
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 60
+PROC = 24
 
 import model_param as mc
 from conversion import convert
 import cloudtracker.main
-
-### Parameters
-conversion_module = True
-cloudtracker_module = True
-profiler_module = True
 
 # Default working directory for ent_analysis package
 cwd = os.getcwd()
@@ -87,13 +82,13 @@ def run_profiler():
 		
 	# Main thermodynamic profiles
 	filelist = glob.glob('%s/variables/*.nc' % (mc.data_directory))
-	wrapper(pkg, 'make_profiles', 'main', filelist)
+	#wrapper(pkg, 'make_profiles', 'main', filelist)
 	
 	filelist = glob.glob('%s/core_entrain/*.nc' % (mc.data_directory))
-	wrapper(pkg, 'core_entrain_profiles', 'main', filelist)
+	#wrapper(pkg, 'core_entrain_profiles', 'main', filelist)
 	
 	filelist = glob.glob('%s/condensed_entrain/*.nc' % (mc.data_directory))
-	wrapper(pkg, 'condensed_entrain_profiles', 'main', filelist)
+	#wrapper(pkg, 'condensed_entrain_profiles', 'main', filelist)
 	
 	# Chi Profiles
 	filelist = glob.glob('cdf/core_env*.nc')
@@ -117,10 +112,10 @@ def run_id_profiles():
 	wrapper(pkg, 'all_profiles', 'main', profiles)
 
 if __name__ == '__main__':
-	run_conversion()
-	run_cloudtracker()
+	#run_conversion()
+	#run_cloudtracker()
 	run_profiler()
-	run_id_profiles()
+	#run_id_profiles()
 	
 	print 'Entrainment analysis completed'
 	
