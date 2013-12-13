@@ -112,8 +112,8 @@ def run_id_profiles():
 	wrapper(pkg, 'all_profiles', 'main', profiles)
 
 if __name__ == '__main__':
-	#run_conversion()
-	#run_cloudtracker()
+	run_conversion()
+	run_cloudtracker()
 	run_profiler()
 	#run_id_profiles()
 	
