@@ -36,6 +36,7 @@ def time_picker(file_name):
 	else:
 		filelist = glob.glob('%s/variables/*.nc' % data_directory)
 	
+	filelist.sort()
 	index = filelist.index(file_name)
 	return index
 
