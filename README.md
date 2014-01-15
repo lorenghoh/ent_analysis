@@ -11,7 +11,7 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 
 > (12/10/2013) The development of the analysis modules is more or less done (except maybe a number of bug fixes and the introduction of a better parallelization scheme for ```id_profiles``` and ```surface_profiles```, which is a little more difficult due to the way they are written). 
 >
->Unless otherwise requested, I will most likely not include the utility scripts in the package.
+> Unless otherwise requested, I will most likely not include the utility scripts in the package.
 
 ### In Progress ###
 - [ ] Check file creation to avoid duplicates

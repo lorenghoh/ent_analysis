@@ -5,7 +5,7 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 # Multiprocessing modules
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 24
+PROC = 16
 
 import model_param as mc
 from conversion import convert
@@ -50,7 +50,7 @@ def run_conversion():
 	# bin3d2nc conversion
 	filelist = glob.glob('./*.bin3D')
 	wrapper(pkg, 'convert', 'convert', filelist)
-	
+	return
 	# Move the netCDF files to relevant locations
 	filelist = glob.glob('./*.nc')
 	wrapper(pkg, 'nc_transfer', 'transfer', filelist)

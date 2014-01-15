@@ -13,7 +13,6 @@ def convert(filename):
 	
 	if result != 0:
 		print "Process aborted."
-		raise "Conversion failed!"
 		
 def convert_stat():
 	stat_name = glob.iglob(SAM + '/OUT_STAT/*.stat').next()
@@ -35,7 +34,6 @@ def convert_stat():
 	
 	if result != 0:
 		print "Process aborted."
-		raise "Conversion failed!"
 	else: 
 		shutil.copy(nc_name, nc_new)
 	
