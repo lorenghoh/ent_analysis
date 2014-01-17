@@ -50,7 +50,7 @@ def run_conversion():
 	# bin3d2nc conversion
 	filelist = glob.glob('./*.bin3D')
 	wrapper(pkg, 'convert', 'convert', filelist)
-	return
+	
 	# Move the netCDF files to relevant locations
 	filelist = glob.glob('./*.nc')
 	wrapper(pkg, 'nc_transfer', 'transfer', filelist)

@@ -13,17 +13,18 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 >
 > Unless otherwise requested, I will most likely not include the utility scripts in the package.
 
+> (01/17/2014) No more parallelization will be introduced, as the performance of this package does not significantly improve the speed of the analysis (except the cloud tracking algorithm, but that would entirely be another research). But I will keep adding small improvements to this analysis package. 
+
 ### In Progress ###
-- [ ] Check file creation to avoid duplicates
 - [ ] Automatically read dimensions from input files
 - [ ] Implement time module to measure execution time
 
 ### Next ###
-- [ ] Implement deeper parallelization for ```id_profiles```
 - [ ] Ensure no data contamination by re-run
 
 ### Maybe ###
 - [ ] Parallelize [*cloudtracker*](https://github.com/freedryk/cloudtracker) module 
+- [ ] Implement deeper parallelization for ```id_profiles```
 
 ## Getting Started ##
  To run the entrainment analysis toolkit, the following Python modules **must** be installed (as needed for the [*cloudtracker*](https://github.com/freedryk/cloudtracker) module):
