@@ -20,7 +20,7 @@ input_directory = model_config[ 'input_directory']
 data_directory = model_config[ 'data_directory']
 sam_directory = model_config['sam_directory']
 
-nt = len( glob.glob('%s/variables/*.nc' % data_directory))
+nt = len( glob.glob('%s/BOMEX_CORE_*.nc' % input_directory))
 
 def get_stat():
 	filename = glob.iglob(data_directory + '/*_stat.nc').next()
