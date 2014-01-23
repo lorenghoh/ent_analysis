@@ -19,7 +19,6 @@ The **entrainment analysis toolkit** is a package used to post-process output da
 - [ ] Automatically read dimensions from input files
 - [ ] Implement time module to measure execution time
 - [ ] Integrated data output folder
-- [ ] Flag for non-entrainment runs
 
 ### Next ###
 - [ ] Ensure no data contamination by re-run

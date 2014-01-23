@@ -10,9 +10,9 @@ for option in ('nz', 'ny', 'nx'):
 	model_config[option] = config.getint('modelconfig', option)
 for option in ('case_name', 'input_directory', 'data_directory', 'sam_directory'):
 	model_config[option] = config.get('modelconfig', option)
-for option in ('do_entrainment'):
-	model_config[option] = config.getboolean('modelconfig', option)
-	
+
+model_config['do_entrainment'] = config.getboolean('modelconfig', 'do_entrainment')
+
 nz, ny, nx = model_config['nz'], model_config['ny'], model_config['nx']
 dt, dx, dy, dz = model_config['dt'], model_config['dz'], model_config['dy'], model_config['dz']
 

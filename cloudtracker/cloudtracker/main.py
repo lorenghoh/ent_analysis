@@ -16,7 +16,7 @@ try:
    from netCDF4 import Dataset
 except:
    try:
-       from netCDF3 import Dataset
+from netCDF3 import Dataset
    except:
        from pupynere import netcdf_file as Dataset
 
