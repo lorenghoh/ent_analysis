@@ -5,7 +5,7 @@ sys.path.append(os.getcwd() + '/cloudtracker/')
 # Multiprocessing modules
 import multiprocessing as mp
 from multiprocessing import Pool
-PROC = 1
+PROC = 16
 
 import model_param as mc
 from conversion import convert

@@ -13,12 +13,12 @@ from make_graph import make_graph
 from output_cloud_data import output_cloud_data
 
 try:
-   from netCDF4 import Dataset
+	from netCDF4 import Dataset
 except:
-   try:
-from netCDF3 import Dataset
-   except:
-       from pupynere import netcdf_file as Dataset
+	try:
+		from netCDF3 import Dataset
+	except:
+		from pupynere import netcdf_file as Dataset
 
 #-------------------
 
