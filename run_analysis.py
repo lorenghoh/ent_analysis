@@ -56,7 +56,7 @@ def run_conversion():
 	wrapper(pkg, 'nc_transfer', 'transfer', filelist)
 	
 	# generate_tracking
-	filelist = glob.glob('%s/variables/*nc' % (mc.data_directory))
+	filelist = glob.glob('%s/variables/*.nc' % (mc.data_directory))
 	wrapper(pkg, 'generate_tracking', 'main', filelist)
 	
 def run_cloudtracker():
